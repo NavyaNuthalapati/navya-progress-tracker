@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navya's-progress-tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Navya's Progress Tracker</h1>
+    <p>Track my GATE, SDE, and Communication progress</p>
+    <p id="quote-text"></p>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
+  </header>
+
+  <main>
+    <section id="overall-progress">
+            <h2>Overall Progress</h2>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      <p id="progress-text">0% completed</p>
+  </section>
+
+    <section id="gate-section">
+      <h2>GATE</h2>
+      <!-- tasks will go here -->
+       <div class="input-row">
+         <input id="gate-input" type="text" placeholder="New GATE task">
+          <button id="gate-add-btn">Add</button>
+       </div>
+       <ul id="gate-list"></ul>
+      
+    </section>
+
+    <section id="sde-section">
+      <h2>SDE</h2>
+      <!-- tasks will go here -->
+        <div class="input-row">
+          <input id="sde-input" type="text" placeholder="New SDE task">
+          <button id="sde-add-btn">Add</button>
+       </div>
+        <ul id="sde-list">
+        
+       </ul>
+    </section>
+
+    <section id="comm-section">
+      <h2>Communication</h2>
+      <!-- tasks will go here -->
+       <div class="input-row">
+         <input id="comm-input" type="text" placeholder="New Communication task">
+         <button id="comm-add-btn">Add</button>
+      </div>
+        <ul id="comm-list">
+            
+       </ul>
+    </section>
+  </main>
+  <section id="category-progress">
+  <h2>Category Progress</h2>
+  <div class="category-row">
+    <span>GATE</span>
+    <div class="category-bar">
+      <div class="category-fill" id="gate-progress"></div>
+    </div>
+    <span id="gate-percent-text">0%</span>
+  </div>
+
+  <div class="category-row">
+    <span>SDE</span>
+    <div class="category-bar">
+      <div class="category-fill" id="sde-progress"></div>
+    </div>
+    <span id="sde-percent-text">0%</span>
+  </div>
+
+  <div class="category-row">
+    <span>Comm</span>
+    <div class="category-bar">
+      <div class="category-fill" id="comm-progress"></div>
+    </div>
+    <span id="comm-percent-text">0%</span>
+  </div>
+</section>
+  <footer>
+    <h6>Built by Navya to track my journey.</h6>
+    <p id="streak-text">Streak: 0 days</p>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
