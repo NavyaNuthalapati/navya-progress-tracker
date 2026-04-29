@@ -1,0 +1,385 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #f3e7ff, #e3f6ff); /* soft gradient */
+  color: #333;
+}
+
+/* LIGHT / DARK THEMES */
+
+body.light {
+  background: linear-gradient(135deg, #f3e7ff, #e3f6ff);
+  color: #333;
+}
+
+body.dark {
+  background: #1e1e2f;
+  color: #f3f3f3;
+}
+
+/* Make all main text bright in dark mode */
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h6,
+body.dark p,
+body.dark span,
+body.dark li {
+  color: #f3f3f3;
+}
+
+/* HEADER */
+
+header {
+  text-align: center;
+  padding: 24px;
+  background: linear-gradient(90deg, #4b6cb7, #182848);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+body.dark header {
+  background: linear-gradient(90deg, #111827, #020617);
+}
+
+/* THEME TOGGLE ICON BUTTON */
+
+#theme-toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* icon for light mode: moon */
+body.light #theme-toggle::before {
+  content: "🌙";
+}
+
+/* icon for dark mode: sun */
+body.dark #theme-toggle::before {
+  content: "☀";
+}
+
+/* LAYOUT */
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* SECTION CARDS – base */
+
+section {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  width: 300px;
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeInCard 0.4s ease-out forwards;
+}
+
+/* light mode section */
+body.light section {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border: none;
+}
+
+/* dark mode section – add white border */
+body.dark section {
+  background-color: rgba(30, 30, 47, 0.95);
+  color: #f3f3f3;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* fade-in animation for cards */
+
+section:nth-of-type(2) {
+  animation-delay: 0.1s;
+}
+section:nth-of-type(3) {
+  animation-delay: 0.2s;
+}
+section:nth-of-type(4) {
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeInCard {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 12px 0;
+  margin-top: 10px;
+  color: #555;
+  font-size: 13px;
+}
+
+body.dark footer {
+  color: #d1d5db;
+}
+
+/* HEADINGS & LISTS */
+
+section h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+body.dark section h2 {
+  color: #f3f3f3;
+}
+
+section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+section li {
+  margin-bottom: 8px;
+}
+
+/* SECTION TOP BORDERS */
+
+#gate-section {
+  border-top: 4px solid #4b6cb7;
+}
+
+#sde-section {
+  border-top: 4px solid #28a745;
+}
+
+#comm-section {
+  border-top: 4px solid #ff9800;
+}
+
+/* OVERALL PROGRESS */
+
+#overall-progress {
+  max-width: 650px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 20px;
+  margin-bottom: 8px;
+}
+
+body.dark .progress-bar {
+  background-color: #333;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #4b6cb7, #182848);
+  transition: width 0.5s ease-out;
+  box-shadow: 0 0 8px rgba(75, 108, 183, 0.6);
+}
+
+#progress-text {
+  font-size: 14px;
+  color: #333;
+}
+
+body.dark #progress-text {
+  color: #f3f3f3;
+}
+
+/* TASK ITEMS & COMPLETION STYLE */
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+body.dark .task-item {
+  background-color: #111827;
+}
+
+.task-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.task-label {
+  flex: 1;
+}
+
+.completed-badge {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background-color: #4caf50;
+  color: white;
+  margin-left: 8px;
+}
+
+/* completed state with animation */
+
+.completed {
+  background-color: #f0f9ff;
+  border-left: 4px solid #4b6cb7;
+  box-shadow: 0 0 6px rgba(75,108,183,0.4);
+  animation: completeTask 0.4s ease-out;
+  color: #256029;
+  border-radius: 6px;
+  padding: 4px 8px;
+  position: relative;
+}
+
+/* check icon on completed tasks */
+.completed::before {
+  content: "✔";
+  color: #256029;
+  font-size: 12px;
+  margin-right: 6px;
+}
+
+/* dark mode tweaks for completed */
+
+body.dark .completed {
+  background-color: #022c22;
+  border-left-color: #22c55e;
+  color: #bbf7d0;
+}
+
+/* animation for completion */
+
+@keyframes completeTask {
+  0% {
+    transform: scale(1);
+    background-color: #ffffff;
+  }
+  50% {
+    transform: scale(1.03);
+    background-color: #e0ffe4;
+  }
+  100% {
+    transform: scale(1);
+    background-color: #f5fff7;
+  }
+}
+
+/* INPUT ROWS */
+
+.input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 6px;
+}
+
+.input-row button {
+  padding: 6px 10px;
+  background-color: #4b6cb7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* CATEGORY PROGRESS */
+
+#category-progress {
+  max-width: 650px;
+  margin: 10px auto 20px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+/* white border for this box too in dark mode */
+body.dark #category-progress {
+  background-color: rgba(18, 24, 38, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+#category-progress h2 {
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.category-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.category-row span:first-child {
+  width: 70px;
+  font-weight: bold;
+}
+
+.category-bar {
+  flex: 1;
+  background-color: #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 14px;
+}
+
+body.dark .category-bar {
+  background-color: #333;
+}
+
+.category-fill {
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease-out;
+}
+
+#gate-progress {
+  background: linear-gradient(90deg, #4b6cb7, #6a89ff);
+}
+
+#sde-progress {
+  background: linear-gradient(90deg, #28a745, #7de27f);
+}
+
+#comm-progress {
+  background: linear-gradient(90deg, #ff9800, #ffc86b);
+}
