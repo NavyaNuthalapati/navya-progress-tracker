@@ -24,7 +24,7 @@ const sdeAddBtn = document.getElementById("sde-add-btn");
 const commInput  = document.getElementById("comm-input");
 const commAddBtn = document.getElementById("comm-add-btn");
 
-// category progress elements (new)
+// category progress elements
 const gateBar = document.getElementById("gate-progress");
 const sdeBar  = document.getElementById("sde-progress");
 const commBar = document.getElementById("comm-progress");
@@ -33,10 +33,13 @@ const gatePercentText = document.getElementById("gate-percent-text");
 const sdePercentText  = document.getElementById("sde-percent-text");
 const commPercentText = document.getElementById("comm-percent-text");
 
-
-
-
+// streak + quote + theme
+const quoteText  = document.getElementById("quote-text");
+const streakText = document.getElementById("streak-text");
 const themeToggle = document.getElementById("theme-toggle");
+
+// ---------- 3. Theme toggle ----------
+
 document.body.classList.add("light");
 
 themeToggle.addEventListener("click", () => {
@@ -49,7 +52,7 @@ themeToggle.addEventListener("click", () => {
   }
 });
 
-// ---------- 3. Render functions ----------
+// ---------- 4. Render functions ----------
 
 function renderTasks(taskArray, listElement) {
   listElement.innerHTML = ""; // clear old items
@@ -65,10 +68,10 @@ function renderTasks(taskArray, listElement) {
     li.appendChild(spanText);
 
     if (task.completed) {
-       const badge = document.createElement("span");
-       badge.textContent = "Completed";
-        badge.classList.add("completed-badge");
-       li.appendChild(badge);
+      const badge = document.createElement("span");
+      badge.textContent = "Completed";
+      badge.classList.add("completed-badge");
+      li.appendChild(badge);
     }
 
     // when you click, toggle completed
@@ -128,52 +131,8 @@ function updateCategoryBars() {
   commPercentText.textContent = commPercent + "%";
 }
 
-function renderAll() {
-  renderTasks(gateTasks, gateList);
-  renderTasks(sdeTasks, sdeList);
-  renderTasks(commTasks, commList);
-  updateProgressBar();
-  updateCategoryBars(); // update the mini bar graph
-}
+// ----- Daily quote ----- //
 
-
-// ---------- 4. Initial render ----------
-
-renderAll();
-
-
-// ---------- 5. Add new GATE task ----------
-
-gateAddBtn.addEventListener("click", () => {
-  const text = gateInput.value.trim();
-  if (text === "") return;
-
-  gateTasks.push({ text, completed: false });
-  gateInput.value = "";
-  renderAll();
-});
-
-sdeAddBtn.addEventListener("click", () => {
-  const text = sdeInput.value.trim();
-  if (text === "") return;
-
-  sdeTasks.push({ text, completed: false });
-  sdeInput.value = "";
-  renderAll();
-});
-
-commAddBtn.addEventListener("click", () => {
-  const text = commInput.value.trim();
-  if (text === "") return;
-
-  commTasks.push({ text, completed: false });
-  commInput.value = "";
-  renderAll();
-});
-
-
-
-//-----Daily quote-----//
 const quotes = [
   "Small steps every day lead to big results.",
   "Trust the process, not the speed.",
@@ -186,10 +145,11 @@ function getRandomQuote() {
   const index = Math.floor(Math.random() * quotes.length);
   return quotes[index];
 }
-const quoteText = document.getElementById("quote-text");
+
 quoteText.textContent = getRandomQuote();
 
-//-----Streak logic------//
+// ----- Streak logic ----- //
+
 function updateStreak() {
   const today = new Date().toDateString(); // e.g., "Wed Apr 29 2026"
   const allTasks = [...gateTasks, ...sdeTasks, ...commTasks];
@@ -217,18 +177,52 @@ function updateStreak() {
 
   return streak;
 }
-const streakText = document.getElementById("streak-text");
+
+// ---------- 5. Master render ----------
 
 function renderAll() {
   renderTasks(gateTasks, gateList);
   renderTasks(sdeTasks, sdeList);
   renderTasks(commTasks, commList);
   updateProgressBar();
-  updateCategoryBars && updateCategoryBars();
+  updateCategoryBars();
 
   const streak = updateStreak();
   streakText.textContent = "Streak: " + streak + " day" + (streak === 1 ? "" : "s");
 }
+
+// ---------- 6. Initial render ----------
+
+renderAll();
+
+// ---------- 7. Add new tasks ----------
+
+gateAddBtn.addEventListener("click", () => {
+  const text = gateInput.value.trim();
+  if (text === "") return;
+
+  gateTasks.push({ text, completed: false });
+  gateInput.value = "";
+  renderAll();
+});
+
+sdeAddBtn.addEventListener("click", () => {
+  const text = sdeInput.value.trim();
+  if (text === "") return;
+
+  sdeTasks.push({ text, completed: false });
+  sdeInput.value = "";
+  renderAll();
+});
+
+commAddBtn.addEventListener("click", () => {
+  const text = commInput.value.trim();
+  if (text === "") return;
+
+  commTasks.push({ text, completed: false });
+  commInput.value = "";
+  renderAll();
+});
 
 
 
