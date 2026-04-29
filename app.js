@@ -223,8 +223,3 @@ commAddBtn.addEventListener("click", () => {
   commInput.value = "";
   renderAll();
 });
-
-
-
-
-
