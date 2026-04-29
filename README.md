@@ -1,4 +1,3 @@
-# navya-progress-tracker
 
 # Navya's Progress Tracker
 
